@@ -189,12 +189,11 @@ brewit mas
 ### Login manually for now.
 
 # TODO: we might not need this if the login from xcode is still available
-#cecho "Need to log in to App Store manually to install apps with mas...." $red
-#echo "Opening App Store. Please login."
-#open "/Applications/App Store.app"
-#echo "Is app store login complete.(y/n)? "
-#read response
-response='y'
+cecho "Need to log in to App Store manually to install apps with mas...." $red
+echo "Opening App Store. Please login."
+open "/Applications/App Store.app"
+echo "Is app store login complete.(y/n)? "
+read response
 if [ "$response" != "${response#[Yy]}" ]
 then
 	# Tweetbot 3
@@ -217,8 +216,6 @@ then
 	mas install 1081413713
 	# Gestimer
 	mas install 990588172
-	# ColorSnapper
-	mas install 969418666
 else
 	cecho "App Store login not complete. Skipping installing App Store Apps" $red
 fi
@@ -287,6 +284,8 @@ brew cleanup
 # node setup
 cecho "Installing node via nvm $NVM_VERSION" $cyan
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install node
 nvm use node
 

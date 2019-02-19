@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #                    _           _        _ _ 
 #  ___  _____  __   (_)_ __  ___| |_ __ _| | |
@@ -7,15 +7,7 @@
 # \___/|___/_/\_\   |_|_| |_|___/\__\__,_|_|_|
 
 
-echo "I  ❤️  🍎"
 echo "Mac OS Install Setup Script"
-echo "By Nina Zakharenko"
-echo "Follow me on twitter! https://twitter.com/nnja"
-
-# Some configs reused from:
-# https://github.com/ruyadorno/installme-osx/
-# https://gist.github.com/millermedeiros/6615994
-# https://gist.github.com/brandonb927/3195465/
 
 # Colorize
 
@@ -39,16 +31,42 @@ cecho() {
   echo "${2}${1}${reset}"
   return
 }
+bcecho() {
+	tput bold
+  echo "${2}${1}${reset}"
+  return
+}
+
+
+secho() {
+	echo ""
+	bcecho "################################################################################" $yellow
+	bcecho "# $1" $yellow
+	bcecho "################################################################################" $yellow
+	echo ""
+}
+
+brewit() {
+	bcecho "brew install $1" $cyan
+	brew install "$1"
+}
+caskit() {
+	bcecho "brew cask install $1" $cyan
+	brew cask install "$1"
+}
 
 echo ""
-cecho "###############################################" $red
-cecho "#        DO NOT RUN THIS SCRIPT BLINDLY       #" $red
-cecho "#         YOU'LL PROBABLY REGRET IT...        #" $red
-cecho "#                                             #" $red
-cecho "#              READ IT THOROUGHLY             #" $red
-cecho "#         AND EDIT TO SUIT YOUR NEEDS         #" $red
-cecho "###############################################" $red
+bcecho "###############################################" $red
+bcecho "#        DO NOT RUN THIS SCRIPT BLINDLY       #" $red
+bcecho "#         YOU'LL PROBABLY REGRET IT...        #" $red
+bcecho "#                                             #" $red
+bcecho "#              READ IT THOROUGHLY             #" $red
+bcecho "#         AND EDIT TO SUIT YOUR NEEDS         #" $red
+bcecho "###############################################" $red
 echo ""
+
+cecho "What's the latest nvm version? Check at https://github.com/creationix/nvm" $cyan
+read -r NVM_VERSION 
 
 # Set continue to false by default.
 CONTINUE=false
@@ -71,24 +89,6 @@ fi
 # keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-
-##############################
-# Prerequisite: Install Brew #
-##############################
-
-echo "Installing brew..."
-
-if test ! $(which brew)
-then
-	## Don't prompt for confirmation when installing homebrew
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null
-fi
-
-# Latest brew, install brew cask
-brew upgrade
-brew update
-brew tap caskroom/cask
 
 
 #############################################
@@ -155,125 +155,142 @@ done
 
 
 ##############################
+# Prerequisite: Install Xcode and CLI tools #
+##############################
+xcode-select --install
+
+##############################
+# Prerequisite: Install Brew #
+##############################
+
+echo "Installing brew..."
+
+if test ! $(which brew)
+then
+	## Don't prompt for confirmation when installing homebrew
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null
+fi
+
+# Latest brew, install brew cask
+brew upgrade
+brew update
+brew tap caskroom/cask
+
+#############################################
+### Installs from Mac App Store
+#############################################
+
+echo "Installing apps from the App Store..."
+
+### find app ids with: mas search "app name"
+brewit mas
+
+### Mas login is currently broken on mojave. See:
+### Login manually for now.
+
+# TODO: we might not need this if the login from xcode is still available
+#cecho "Need to log in to App Store manually to install apps with mas...." $red
+#echo "Opening App Store. Please login."
+#open "/Applications/App Store.app"
+#echo "Is app store login complete.(y/n)? "
+#read response
+response='y'
+if [ "$response" != "${response#[Yy]}" ]
+then
+	# Tweetbot 3
+	mas install 1384080005
+	# Translate Tab
+	mas install 458887729
+	# The Unarchiver
+	mas install 425424353
+	# Sketch 3
+	mas install 852320343
+	# Shush 
+	mas install 496437906
+	# Pocket
+	mas install 568494494
+	# Patterns
+	mas install 429449079
+	# HexColor
+	mas install 446103121
+	# Gif Brewery 3
+	mas install 1081413713
+	# Gestimer
+	mas install 990588172
+	# ColorSnapper
+	mas install 969418666
+else
+	cecho "App Store login not complete. Skipping installing App Store Apps" $red
+fi
+
+##############################
 # Install via Brew           #
 ##############################
 
-echo "Starting brew app install..."
+echo "Starting brew install..."
 
-### Window Management
-# Todo: Try Divvy and spectacles in the future
-brew cask install sizeup  # window manager
+brewit awscli
+brewit cloc
+brewit dfu-util
+brewit direnv
+brewit gawk
+brewit git
+brewit gitsh
+brewit go
+brewit hub
+brewit imagemagick
+brewit jq
+brewit macvim
+brewit netcat
+brewit nmap
+brewit pidof
+brewit postgresql
+brewit python
+brewit rbenv
+brewit readline
+brewit reattach-to-user-namespace
+brewit redis
+brewit rename
+brewit ruby
+brewit ruby-build
+brewit rust
+brewit the_silver_searcher
+brewit tig
+brewit tmux
+brewit tree
+brewit wget
+brewit zsh
+brewit zsh-completions
 
-# Start SizeUp at login
-defaults write com.irradiatedsoftware.SizeUp StartAtLogin -bool true
+echo "Starting brew cask install..."
 
-# Don’t show the preferences window on next start
-defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
+caskit alfred
+caskit notion
+caskit dropbox
+caskit hammerspoon
+caskit karabiner-elements
+caskit google-chrome
+caskit homebrew/cask-versions/google-chrome-canary
+caskit firefox
+caskit docker
+caskit visual-studio-code
+caskit caffeine
+caskit slack
+caskit vlc
+caskit acorn
+caskit carbon-copy-cloner
+caskit daisydisk
+caskit franz
 
-
-### Developer Tools
-brew cask install iterm2
-brew cask install dash
-brew install ispell
-
-
-### Development
-brew cask install docker
-brew install postgresql
-brew install redis
-
-
-### Command line tools - install new ones, update others to latest version
-brew install git  # upgrade to latest
-brew install git-lfs # track large files in git https://github.com/git-lfs/git-lfs
-brew install wget
-brew install zsh # zshell
-brew install tmux
-brew install tree
-brew link curl --force
-brew install grep --with-default-names
-brew install trash  # move to osx trash instead of rm
-brew install less
-
-
-### Python
-brew install python
-brew install pyenv
-
-
-### Microcontrollers & Electronics
-brew install avrdude
-brew cask install arduino
-# Manually install teensyduino from:
-# https://www.pjrc.com/teensy/td_download.html
-
-
-### Dev Editors 
-brew cask install visual-studio-code
-brew cask install pycharm
-### spacemacs github.com/syl20bnr/spacemacs
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-brew tap d12frosted/emacs-plus
-brew install emacs-plus --HEAD --with-natural-title-bars
-brew linkapps emacs-plus
-
-
-### Writing
-brew cask install evernote
-brew cask install macdown
-brew cask install notion
-
-
-### Conferences, Blogging, Screencasts
-brew cask install deckset
-brew cask install ImageOptim  # for optimizing images
-brew cask install screenflow
-
-
-### Productivity
-brew cask install wavebox
-brew cask install google-chrome
-brew cask install alfred
-brew cask install dropbox
-
-brew cask install timing  # time and project tracker
-brew cask install keycastr  # show key presses on screen (for gifs & screencasts)
-brew cask install betterzip
-brew cask install caffeine  # keep computer from sleeping
-brew cask install skitch  # app to annotate screenshots
-brew cask install muzzle
-brew cask install flux
-
-
-### Keyboard & Mouse
-brew cask install karabiner-elements  # remap keys, emacs shortcuts
-brew cask install scroll-reverser  # allow natural scroll for trackpad, not for mouse
-
-
-### Quicklook plugins https://github.com/sindresorhus/quick-look-plugins
-brew cask install qlcolorcode # syntax highlighting in preview
-brew cask install qlstephen  # preview plaintext files without extension
-brew cask install qlmarkdown  # preview markdown files
-brew cask install quicklook-json  # preview json files
-brew cask install epubquicklook  # preview epubs, make nice icons
-brew cask install quicklook-csv  # preview csvs
-
-
-### Chat / Video Conference
-brew cask install slack
-brew cask install microsoft-teams
-brew cask install zoomus
-brew cask install signal
-
-
-### Music and Video
-brew cask install marshallofsound-google-play-music-player
-brew cask install vlc
-
-
-### Run Brew Cleanup
 brew cleanup
 
+# node setup
+cecho "Installing node via nvm $NVM_VERSION" $cyan
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash
+nvm install node
+nvm use node
+
+exit 0
 
 #############################################
 ### Fonts
@@ -290,45 +307,6 @@ brew cask install font-fira-code
 ### SourceCodePro + Powerline + Awesome Regular (for powerlevel 9k terminal icons)
 cd ~/Library/Fonts && { curl -O 'https://github.com/Falkor/dotfiles/blob/master/fonts/SourceCodePro+Powerline+Awesome+Regular.ttf?raw=true' ; cd -; }
 
-
-#############################################
-### Installs from Mac App Store
-#############################################
-
-echo "Installing apps from the App Store..."
-
-### find app ids with: mas search "app name"
-brew install mas
-
-### Mas login is currently broken on mojave. See:
-### Login manually for now.
-
-cecho "Need to log in to App Store manually to install apps with mas...." $red
-echo "Opening App Store. Please login."
-open "/Applications/App Store.app"
-echo "Is app store login complete.(y/n)? "
-read response
-if [ "$response" != "${response#[Yy]}" ]
-then
-	mas install 907364780  # Tomato One - Pomodoro timer
-	mas install 485812721  # Tweetdeck
-	mas install 668208984  # GIPHY Capture. The GIF Maker (For recording my screen as gif)
-	mas install 1351639930 # Gifski, convert videos to gifs
-	mas install 414030210  # Limechat, IRC app.
-else
-	cecho "App Store login not complete. Skipping installing App Store Apps" $red
-fi
-
-
-#############################################
-### Install few global python packages
-#############################################
-
-echo "Installing global Python packages..."
-
-pip3 install --upgrade pip
-pip3 install --user pylint
-pip3 install --user flake8
 
 
 #############################################

@@ -165,6 +165,7 @@ caskit istat-menus5
 caskit tuxera-ntfs
 caskit hammerspoon
 caskit karabiner-elements
+caskit homebrew/cask-drivers/logitech-gaming-software
 caskit google-chrome
 caskit homebrew/cask-versions/google-chrome-canary
 caskit firefox

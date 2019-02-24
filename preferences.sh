@@ -195,10 +195,10 @@ defaults write com.apple.systemuiserver menuExtras -array \
 wallpaper set ~/Dropbox/images/vladstudio/vladstudio_black_hole_2560x1600.jpg
 
 # Set screensaver to never run
-defaults -currentHost write com.apple.screensaver idleTime -int 0
+defaults write com.apple.screensaver idleTime -int 0
 
 # Set screensaver to Flurry
-defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName Flurry path /System/Library/Screen\ Savers/Flurry.saver/ type 0
+defaults write com.apple.screensaver moduleDict -dict moduleName Flurry path /System/Library/Screen\ Savers/Flurry.saver/ type 0
 
 ###############################################################################
 # SSD-specific tweaks                                                         #
@@ -412,8 +412,14 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-# Set the icon size of Dock items to 36 pixels
-defaults write com.apple.dock tilesize -int 36
+# Set the icon size of Dock items
+defaults write com.apple.dock tilesize -int 55
+
+# Turn on Dock magnification
+defaults write com.apple.dock magnification -int 1
+
+# Set the icon size of Dock items after magnification
+defaults write com.apple.dock largesize -int 95
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
@@ -437,6 +443,12 @@ defaults write com.apple.dock static-only -bool true
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
+
+# Don't switch to a space with open windows for the application
+defaults write NSGlobalDomain AppleSpacesSwitchOnActivate -int 0
+
+# Turn off Displays have separate spaces
+defaults write com.apple.spaces spans-displays -bool true
 
 # Speed up Mission Control animations
 defaults write com.apple.dock expose-animation-duration -float 0.1
@@ -521,6 +533,13 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
 ###############################################################################
+# Others                                                                      #
+###############################################################################
+
+# Turn on firewall https://raymii.org/s/snippets/OS_X_-_Turn_firewall_on_or_off_from_the_command_line.html
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+
+###############################################################################
 # Spotlight                                                                   #
 ###############################################################################
 
@@ -583,18 +602,10 @@ tell application "Terminal"
 	local allOpenedWindows
 	local initialOpenedWindows
 	local windowID
-	set themeName to "Ocean xterm-256color"
+	set themeName to "Ocean"
 
 	(* Store the IDs of all the open terminal windows. *)
 	set initialOpenedWindows to id of every window
-
-	(* Open the custom theme so that it gets added to the list
-	   of available terminal themes (note: this will open two
-	   additional terminal windows). *)
-	do shell script "open '$HOME/init/" & themeName & ".terminal'"
-
-	(* Wait a little bit to ensure that the custom theme is added. *)
-	delay 1
 
 	(* Set the custom theme as the default terminal theme. *)
 	set default settings to settings set themeName

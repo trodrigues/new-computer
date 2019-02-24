@@ -19,7 +19,9 @@ sudo vim /etc/shells
 # Set the default shell for this user
 chsh -s /usr/local/bin/zsh trodrigues
 
-mkdir ~/.ssh
+if [ ! -d ~/.ssh ] ; then
+	mkdir ~/.ssh
+fi
 
 # Let's add some sshkeys
 echo "Add an sshkey? Which file?"
@@ -28,7 +30,7 @@ ls -l ~/Dropbox/configs/sshkeys
 read -r sshkeyzipfile
 
 if [ -n $sshkeyzipfile ]; then
-	pushd .ssh
+	pushd ~/.ssh
 	unzip -j ~/Dropbox/configs/sshkeys/$sshkeyzipfile.zip
 	popd
 	ssh-add -K ~/.ssh/id_rsa

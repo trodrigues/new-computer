@@ -178,11 +178,11 @@ defaults write com.apple.systemuiserver menuExtras -array \
 	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
 	"/System/Library/CoreServices/Menu Extras/AirPort.menu"
 
-# Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
+# Set a custom wallpaper image. `DefaultBackground.jpg` is already a symlink, and
 # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
 rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
-sudo ln -s ~/Dropbox/images/vladstudio/vladstudio_black_hole_2560x1600.jpg /System/Library/CoreServices/DefaultDesktop.jpg
+sudo rm -rf /System/Library/CoreServices/DefaultBackground.jpg
+sudo ln -s ~/Dropbox/images/vladstudio/vladstudio_black_hole_2560x1600.jpg /System/Library/CoreServices/DefaultBackground.jpg
 
 ###############################################################################
 # SSD-specific tweaks                                                         #

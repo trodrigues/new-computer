@@ -147,6 +147,7 @@ brewit the_silver_searcher
 brewit tig
 brewit tmux
 brewit tree
+brewit wallpaper
 brewit wget
 brewit zsh
 brewit zsh-completions

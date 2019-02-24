@@ -10,10 +10,9 @@ sudo_keep_alive
 # Also sets up #$HOME symlinks
 cp ~/Dropbox/configs/zsh/zshrc ~/.zshrc
 
-pushd /usr/local/share
-sudo chmod -R 755 zsh
-sudo chown -R root:staff zsh
-popd
+# Stop compaudit from complaining
+# https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
+chmod g-w /usr/local/share
 
 # We need to add the non standard shell to /etc/shells for it to be accepted
 bcecho "Please copy the following path (should be in your clipboard already) and paste it in the next file (press enter to continue)" $red
@@ -61,6 +60,12 @@ if [ -n $computername ]; then
 	sudo scutil --set LocalHostName "$computername"
 	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$computername"
 fi
+
+bcecho "Setting Default Browser" $cyan
+npx set-default-browser firefox
+
+echo "Is it set? Press enter to continue"
+read
 
 bcecho "Setting OSX and app preferences. Please wait..." $cyan
 
@@ -186,11 +191,14 @@ defaults write com.apple.systemuiserver menuExtras -array \
 	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
 	"/System/Library/CoreServices/Menu Extras/AirPort.menu"
 
-# Set a custom wallpaper image. `DefaultBackground.jpg` is already a symlink, and
-# all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
-rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-sudo rm -rf /System/Library/CoreServices/DefaultBackground.jpg
-sudo ln -s ~/Dropbox/images/vladstudio/vladstudio_black_hole_2560x1600.jpg /System/Library/CoreServices/DefaultBackground.jpg
+# Set a custom wallpaper image.
+wallpaper set ~/Dropbox/images/vladstudio/vladstudio_black_hole_2560x1600.jpg
+
+# Set screensaver to never run
+defaults -currentHost write com.apple.screensaver idleTime -int 0
+
+# Set screensaver to Flurry
+defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName Flurry path /System/Library/Screen\ Savers/Flurry.saver/ type 0
 
 ###############################################################################
 # SSD-specific tweaks                                                         #

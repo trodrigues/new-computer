@@ -8,7 +8,12 @@ sudo_keep_alive
 
 # Copy main zshrc file which loads remaining configs
 # Also sets up #$HOME symlinks
-cp ~/Dropbox/configs/zsh/zshrc .zshrc
+cp ~/Dropbox/configs/zsh/zshrc ~/.zshrc
+
+pushd /usr/local/share
+sudo chmod -R 755 zsh
+sudo chown -R root:staff zsh
+popd
 
 # We need to add the non standard shell to /etc/shells for it to be accepted
 bcecho "Please copy the following path (should be in your clipboard already) and paste it in the next file (press enter to continue)" $red
@@ -82,6 +87,9 @@ defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 # scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Automatic"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
+
+# Click on the scrollbar to jump to the spot that's clicked
+defaults write NSGlobalDomain AppleScrollerPagingBehavior -int 1
 
 # Disable the over-the-top focus ring animation
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false

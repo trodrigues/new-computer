@@ -57,6 +57,8 @@ if [ -n $computername ]; then
 	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$computername"
 fi
 
+bcecho "Setting OSX and app preferences. Please wait..." $cyan
+
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
@@ -746,6 +748,9 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
+
+bcecho "Stuff will now restart. Don't be scared! And press enter to continue" $red
+read
 
 for app in "Activity Monitor" \
 	"Address Book" \

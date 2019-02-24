@@ -27,7 +27,7 @@ echo "Add an sshkey? Which file?"
 ls -l ~/Dropbox/configs/sshkeys
 read -r sshkeyzipfile
 
-if $sshkeyzipfile; then
+if [ -n $sshkeyzipfile ]; then
 	pushd .ssh
 	unzip -j ~/Dropbox/configs/sshkeys/$sshkeyzipfile.zip
 	popd
@@ -47,7 +47,7 @@ osascript -e 'tell application "System Preferences" to quit'
 echo "What's the computername? Leave blank if already set"
 read -r computername
 
-if $computername; then
+if [ -n $computername ]; then
 	# Set computer name (as done via System Preferences → Sharing)
 	sudo scutil --set ComputerName "$computername"
 	sudo scutil --set HostName "$computername"

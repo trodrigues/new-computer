@@ -287,7 +287,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
 # Enable subpixel font rendering on non-Apple LCDs
-# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
+# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266622810
 defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
 # Enable HiDPI display modes (requires restart)

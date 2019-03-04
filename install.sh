@@ -65,6 +65,7 @@ fi
 brew upgrade
 brew update
 brew tap caskroom/cask
+brew tap thoughtbot/formulae
 
 #############################################
 ### Installs from Mac App Store

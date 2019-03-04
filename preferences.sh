@@ -288,7 +288,7 @@ defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
 # Enable subpixel font rendering on non-Apple LCDs
 # Reference: http://osxdaily.com/2018/09/26/fix-blurry-thin-fonts-text-macos-mojave/
-defaults write NSGlobalDomain AppleFontSmoothing -int 1
+defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 # Enable HiDPI display modes (requires restart)
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true

@@ -287,7 +287,7 @@ defaults write com.apple.screencapture disable-shadow -bool true
 defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
 
 # Enable subpixel font rendering on non-Apple LCDs
-# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266622810
+# Reference: http://osxdaily.com/2018/09/26/fix-blurry-thin-fonts-text-macos-mojave/
 defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
 # Enable HiDPI display modes (requires restart)

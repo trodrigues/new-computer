@@ -77,8 +77,6 @@ brewit mas
 
 ### Mas login is currently broken on mojave. See:
 ### Login manually for now.
-
-# TODO: we might not need this if the login from xcode is still available
 cecho "Need to log in to App Store manually to install apps with mas...." $red
 echo "Opening App Store. Please login."
 open "/Applications/App Store.app"

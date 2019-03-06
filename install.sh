@@ -193,6 +193,8 @@ caskit font-museo
 caskit font-open-sans
 caskit font-source-code-pro
 caskit font-source-code-pro-for-powerline
+caskit font-fira-mono-for-powerline
+caskit font-fira-code
 
 
 

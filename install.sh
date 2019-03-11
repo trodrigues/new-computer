@@ -176,6 +176,9 @@ caskit acorn
 caskit carbon-copy-cloner
 caskit daisydisk
 caskit franz
+caskit kiibohd-configurator
+caskit charles
+caskit choosy
 
 
 #############################################

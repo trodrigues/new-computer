@@ -232,6 +232,9 @@ defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryCli
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
+# Disable Shake mouse pointer to locate
+defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool true
+
 # Disable force click and haptic feedback
 defaults write ~/Library/Preferences/com.apple.AppleMultitouchTrackpad.plist ForceSuppressed -bool true
 

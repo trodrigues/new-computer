@@ -159,6 +159,7 @@ caskit alfred
 caskit notion
 caskit dropbox
 caskit 1password6
+caskit kitty
 caskit witch
 caskit istat-menus5
 caskit tuxera-ntfs
@@ -195,8 +196,6 @@ caskit font-lato
 caskit font-museo
 caskit font-open-sans
 caskit font-source-code-pro
-caskit font-source-code-pro-for-powerline
-caskit font-fira-mono-for-powerline
 caskit font-fira-code
 
 

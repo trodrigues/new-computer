@@ -416,7 +416,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
 # Set the icon size of Dock items
-defaults write com.apple.dock tilesize -int 55
+defaults write com.apple.dock tilesize -int 28
 
 # Turn on Dock magnification
 defaults write com.apple.dock magnification -int 1

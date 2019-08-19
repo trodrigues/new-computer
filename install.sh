@@ -149,6 +149,7 @@ brewit tree
 brewit wallpaper
 brewit wget
 brewit zsh
+brewit exa
 brewit zsh-completions
 
 gem install tmuxinator
@@ -199,7 +200,6 @@ caskit font-museo
 caskit font-open-sans
 caskit font-source-code-pro
 caskit font-fira-code
-caskit font-menlo-for-powerline
 
 
 

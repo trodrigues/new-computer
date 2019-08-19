@@ -159,6 +159,7 @@ caskit alfred
 caskit notion
 caskit dropbox
 caskit 1password6
+caskit iterm2
 caskit kitty
 caskit witch
 caskit istat-menus5
@@ -180,6 +181,7 @@ caskit franz
 caskit kiibohd-configurator
 caskit charles
 caskit choosy
+caskit calibre
 
 
 #############################################

@@ -8,7 +8,7 @@ sudo_keep_alive
 
 # Copy main zshrc file which loads remaining configs
 # Also sets up #$HOME symlinks
-cp ~/Dropbox/configs/zsh/zshrc ~/.zshrc
+cp ~/Dropbox/configs/zsh/zshrc.zsh ~/.zshrc
 
 # Stop compaudit from complaining
 # https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories

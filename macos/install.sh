@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./utils.sh
+source ../utils.sh
 
 bcecho "Mac OS Install Setup Script" $cyan
 

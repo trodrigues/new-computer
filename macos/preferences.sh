@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./utils.sh
+source ../utils.sh
 
 bcecho "Mac OS Preferences Setup Script" $cyan
 

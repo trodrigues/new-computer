@@ -13,12 +13,17 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 sudo apt-get install -y \
 	build-essential \
+	rust \
+	ruby \
+	python3-dev python3-venv python3-wheel pipenv \
 	direnv \
 	silversearcher-ag \
-	rust \
-	keychain
+	keychain \
+  tig
 
 cargo install exa
+
+sudo gem install tmuxinator gitsh
 
 # node setup
 cecho "Installing node via nvm $NVM_VERSION" $cyan

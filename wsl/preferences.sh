@@ -9,3 +9,4 @@ sudo_keep_alive
 ln -s /mnt/c/Users/tmcro/Dropbox/ $HOME/Dropbox
 ln -s /mnt/c/Users/tmcro/Documents/ $HOME/Documents
 cp /mnt/c/Users/tmcro/Dropbox/configs/sshconfig $HOME/.ssh/config
+sudo cp $HOME/Dropbox/configs/wsl.conf /etc/wsl.conf

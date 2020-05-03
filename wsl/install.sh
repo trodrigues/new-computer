@@ -13,13 +13,14 @@ sudo apt-get update && sudo apt-get upgrade -y
 
 sudo apt-get install -y \
 	build-essential \
+	zsh \
 	rust \
 	ruby \
 	python3-dev python3-venv python3-wheel pipenv \
 	direnv \
 	silversearcher-ag \
 	keychain \
-  tig
+	tig
 
 cargo install exa
 

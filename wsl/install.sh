@@ -15,7 +15,7 @@ sudo apt-get install -y \
 	build-essential \
 	zsh \
 	rustc \
-	ruby \
+	ruby ruby-dev libreadline-dev \
 	python3-dev python3-venv python3-wheel pipenv \
 	direnv \
 	silversearcher-ag \

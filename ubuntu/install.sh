@@ -17,8 +17,16 @@ sudo snap install caprine
 
 sudo apt-get install -y \
   fonts-cascadia-code \
-  xclip \
-  docker.io
+  gnome-shell-extensions chrome-gnome-shell \
+  pavucontrol paprefs pavumeter pulseaudio-equalizer \
+  lm-sensors xclip \
+  flatpak \
+  docker.io docker-compose
+
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+flatpak install -y HydraPaper
+
 
 sudo systemctl enable --now docker
 sudo usermod -aG docker trodrigues

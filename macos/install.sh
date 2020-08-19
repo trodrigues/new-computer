@@ -159,7 +159,7 @@ echo "Starting brew cask install..."
 caskit alfred
 caskit notion
 caskit dropbox
-caskit 1password6
+caskit 1password
 caskit iterm2
 caskit kitty
 caskit witch

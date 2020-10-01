@@ -64,7 +64,7 @@ fi
 # Latest brew, install brew cask
 brew upgrade
 brew update
-brew tap caskroom/cask
+brew tap homebrew/cask
 brew tap thoughtbot/formulae
 
 #############################################

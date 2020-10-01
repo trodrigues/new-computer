@@ -80,7 +80,7 @@ brewit mas
 ### Login manually for now.
 cecho "Need to log in to App Store manually to install apps with mas...." $red
 echo "Opening App Store. Please login."
-open "/Applications/App Store.app"
+open "/System/Applications/App Store.app"
 echo "Is app store login complete.(y/n)? "
 read response
 if [ "$response" != "${response#[Yy]}" ]

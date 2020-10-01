@@ -191,7 +191,7 @@ caskit calibre
 
 echo "Installing fonts..."
 
-brew tap caskroom/fonts
+brew tap homebrew/cask-fonts
 
 caskit font-hack
 caskit font-inconsolata

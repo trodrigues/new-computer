@@ -200,6 +200,7 @@ caskit font-museo
 caskit font-open-sans
 caskit font-source-code-pro
 caskit font-fira-code
+caskit font-cascadia-code
 
 
 

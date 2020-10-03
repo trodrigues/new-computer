@@ -163,7 +163,7 @@ caskit 1password
 caskit iterm2
 caskit kitty
 caskit witch
-caskit istat-menus5
+caskit istat-menus
 caskit tuxera-ntfs
 caskit hammerspoon
 caskit karabiner-elements

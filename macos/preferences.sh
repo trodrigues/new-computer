@@ -8,38 +8,25 @@ sudo_keep_alive
 
 # Copy main zshrc file which loads remaining configs
 # Also sets up #$HOME symlinks
+rm -f .zshrc
 cp ~/Dropbox/configs/zsh/zshrc.zsh ~/.zshrc
 
 # Stop compaudit from complaining
 # https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
-chmod g-w /usr/local/share
+#chmod g-w /usr/local/share
 
 # We need to add the non standard shell to /etc/shells for it to be accepted
 bcecho "Please copy the following path (should be in your clipboard already) and paste it in the next file (press enter to continue)" $red
-echo "/usr/local/bin/zsh" | pbcopy
-echo "/usr/local/bin/zsh"
+HOMEBREW="/opt/homebrew"
+echo "$HOMEBREW/bin/zsh" | pbcopy
+echo "$HOMEBREW/bin/zsh"
 read
 sudo vim /etc/shells
 # Set the default shell for this user
-chsh -s /usr/local/bin/zsh trodrigues
+chsh -s $HOMEBREW/bin/zsh trodrigues
 
 if [ ! -d ~/.ssh ] ; then
 	mkdir ~/.ssh
-fi
-
-# Let's add some sshkeys
-echo "Add an sshkey? Which file?"
-
-ls -l ~/Dropbox/configs/sshkeys
-read -r sshkeyzipfile
-
-if [ -n $sshkeyzipfile ]; then
-	pushd ~/.ssh
-	unzip -j ~/Dropbox/configs/sshkeys/$sshkeyzipfile.zip
-	popd
-	ssh-add -K ~/.ssh/id_rsa
-else
-	echo "No ssh key was added"
 fi
 
 #############################################
@@ -61,9 +48,6 @@ if [ -n $computername ]; then
 	sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$computername"
 fi
 
-bcecho "Setting Default Browser" $cyan
-npx set-default-browser firefox
-
 echo "Is it set? Press enter to continue"
 read
 
@@ -72,15 +56,6 @@ bcecho "Setting OSX and app preferences. Please wait..." $cyan
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
-
-# Set standby delay to 24 hours (default is 1 hour)
-#sudo pmset -a standbydelay 86400
-
-# Disable the sound effects on boot
-#sudo nvram SystemAudioVolume=" "
-
-# Disable transparency in the menu bar and elsewhere on Yosemite
-#defaults write com.apple.universalaccess reduceTransparency -bool true
 
 # Set accent color to Purple and highlight color to Purple
 defaults write NSGlobalDomain AppleAccentColor -string 5
@@ -178,41 +153,11 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Use function F1, F, etc keys as standard function keys
 defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 
-# Menu bar: hide the Time Machine, User icons, but show the volume Icon.
-for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-	defaults write "${domain}" dontAutoLoad -array \
-		"/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-		"/System/Library/CoreServices/Menu Extras/User.menu" \
-		"/System/Library/CoreServices/Menu Extras/Battery.menu" \
-		"/System/Library/CoreServices/Menu Extras/Clock.menu"
-done
-defaults write com.apple.systemuiserver menuExtras -array \
-	"/System/Library/CoreServices/Menu Extras/Volume.menu" \
-	"/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-	"/System/Library/CoreServices/Menu Extras/AirPort.menu"
-
-# Set a custom wallpaper image.
-wallpaper set ~/Dropbox/images/vladstudio/vladstudio_black_hole_2560x1600.jpg
-
 # Set screensaver to never run
 defaults write com.apple.screensaver idleTime -int 0
 
 # Set screensaver to Flurry
 defaults write com.apple.screensaver moduleDict -dict moduleName Flurry path /System/Library/Screen\ Savers/Flurry.saver/ type 0
-
-###############################################################################
-# SSD-specific tweaks                                                         #
-###############################################################################
-
-# Disable hibernation (speeds up entering sleep mode)
-sudo pmset -a hibernatemode 0
-
-# Remove the sleep image file to save disk space
-sudo rm /private/var/vm/sleepimage
-# Create a zero-byte file instead…
-sudo touch /private/var/vm/sleepimage
-# …and make sure it can’t be rewritten
-sudo chflags uchg /private/var/vm/sleepimage
 
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
@@ -489,15 +434,6 @@ defaults write com.apple.dock show-recents -bool false
 # Reset Launchpad, but keep the desktop wallpaper intact
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
-# Add iOS & Watch Simulator to Launchpad
-#sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
-#sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
-
-# Add a spacer to the left side of the Dock (where the applications are)
-#defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-# Add a spacer to the right side of the Dock (where the Trash is)
-#defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
-
 # Hot corners
 # Possible values:
 #  0: no-op
@@ -596,45 +532,6 @@ sudo mdutil -E / > /dev/null
 
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
-
-# Set the theme
-osascript <<EOD
-
-tell application "Terminal"
-
-	local allOpenedWindows
-	local initialOpenedWindows
-	local windowID
-	set themeName to "Ocean"
-
-	(* Store the IDs of all the open terminal windows. *)
-	set initialOpenedWindows to id of every window
-
-	(* Set the custom theme as the default terminal theme. *)
-	set default settings to settings set themeName
-
-	(* Get the IDs of all the currently opened terminal windows. *)
-	set allOpenedWindows to id of every window
-
-	repeat with windowID in allOpenedWindows
-
-		(* Close the additional windows that were opened in order
-		   to add the custom theme to the list of terminal themes. *)
-		if initialOpenedWindows does not contain windowID then
-			close (every window whose id is windowID)
-
-		(* Change the theme for the initial opened terminal windows
-		   to remove the need to close them in order for the custom
-		   theme to be applied. *)
-		else
-			set current settings of tabs of (every window whose id is windowID) to settings set themeName
-		end if
-
-	end repeat
-
-end tell
-
-EOD
 
 # Enable “focus follows mouse” for Terminal.app and all X11 apps
 # i.e. hover over a window and start typing in it without clicking first
@@ -759,42 +656,5 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
 
-###############################################################################
-# Tweetbot.app                                                                #
-###############################################################################
 
-# Bypass the annoyingly slow t.co URL shortener
-defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
-
-###############################################################################
-# Kill affected applications                                                  #
-###############################################################################
-
-bcecho "Stuff will now restart. Don't be scared! And press enter to continue" $red
-read
-
-for app in "Activity Monitor" \
-	"Address Book" \
-	"Calendar" \
-	"cfprefsd" \
-	"Contacts" \
-	"Dock" \
-	"Finder" \
-	"Google Chrome Canary" \
-	"Google Chrome" \
-	"Mail" \
-	"Messages" \
-	"Opera" \
-	"Photos" \
-	"Safari" \
-	"SizeUp" \
-	"Spectacle" \
-	"SystemUIServer" \
-	"Terminal" \
-	"Transmission" \
-	"Tweetbot" \
-	"Twitter" \
-	"iCal"; do
-	killall "${app}" &> /dev/null
-done
 echo "Done. Note that some of these changes require a logout/restart to take effect."

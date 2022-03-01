@@ -42,8 +42,8 @@ brewit() {
 	brew install "$1"
 }
 caskit() {
-	bcecho "brew cask install $1" $cyan
-	brew cask install "$1"
+	bcecho "brew  install --cask $1" $cyan
+	brew install --cask "$1"
 }
 
 sudo_keep_alive() {

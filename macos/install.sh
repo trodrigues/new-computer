@@ -18,9 +18,6 @@ bcecho "Don't forget to set display sleep and screen saver to Never" $magenta
 
 echo ""
 
-cecho "What's the latest nvm version? Check at https://github.com/creationix/nvm" $cyan
-read -r NVM_VERSION 
-
 # Set continue to false by default.
 CONTINUE=false
 
@@ -58,7 +55,7 @@ echo "Installing brew..."
 if test ! $(which brew)
 then
 	## Don't prompt for confirmation when installing homebrew
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" < /dev/null
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Latest brew, install brew cask
@@ -151,6 +148,8 @@ brewit wget
 brewit zsh
 brewit exa
 brewit zsh-completions
+brewit jenv
+brewit fnm
 
 gem install tmuxinator
 
@@ -167,7 +166,7 @@ caskit istat-menus
 caskit tuxera-ntfs
 caskit hammerspoon
 caskit karabiner-elements
-caskit homebrew/cask-drivers/logitech-gaming-software
+caskit logitech-g-hub
 caskit google-chrome
 caskit homebrew/cask-versions/google-chrome-canary
 caskit firefox
@@ -208,44 +207,3 @@ caskit font-cascadia-code
 
 brew cleanup
 
-
-# node setup
-cecho "Installing node via nvm $NVM_VERSION" $cyan
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install node
-nvm use node
-
-CONTINUE=false
-
-echo ""
-cecho "Is the Dropbox sync finished? y/n)" $red
-cecho "If not, wait for it and then answer" $red
-read -r response
-if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-  CONTINUE=true
-fi
-
-if ! $CONTINUE; then
-  # Check if we're continuing and output a message if not
-  cecho "Wait for it and then come back and run preferences.sh again. Don't forget to run preferences.sh afterwards" $red
-else
-	./preferences.sh
-fi
-
-echo ""
-cecho "Done! Don't forget to check your personal document about a fresh install for manual steps." $cyan
-echo ""
-echo ""
-cecho "################################################################################" $white
-echo ""
-echo ""
-cecho "Note that some of these changes require a logout/restart to take effect." $red
-echo ""
-echo ""
-echo -n "Check for and install available OSX updates, install, and automatically restart? (y/n)? "
-read response
-if [ "$response" != "${response#[Yy]}" ] ;then
-    softwareupdate -i -a --restart
-fi

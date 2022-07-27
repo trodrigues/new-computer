@@ -150,6 +150,7 @@ brewit exa
 brewit zsh-completions
 brewit jenv
 brewit fnm
+brewit asdf
 
 gem install tmuxinator
 
@@ -160,10 +161,8 @@ caskit notion
 caskit dropbox
 caskit 1password
 caskit iterm2
-caskit kitty
 caskit witch
 caskit istat-menus
-caskit tuxera-ntfs
 caskit hammerspoon
 caskit karabiner-elements
 caskit logitech-g-hub
@@ -177,7 +176,6 @@ caskit vlc
 caskit acorn
 caskit carbon-copy-cloner
 caskit daisydisk
-caskit franz
 caskit kiibohd-configurator
 caskit charles
 caskit choosy
@@ -200,7 +198,7 @@ caskit font-open-sans
 caskit font-source-code-pro
 caskit font-fira-code
 caskit font-cascadia-code
-
+caskit font-iosevka
 
 
 ############################################

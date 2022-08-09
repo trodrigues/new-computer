@@ -141,6 +141,7 @@ brewit rename
 brewit ruby
 brewit ruby-build
 brewit rust
+brewit svn # needed for fonts
 brewit the_silver_searcher
 brewit tig
 brewit tmux
@@ -176,7 +177,7 @@ caskit istat-menus
 caskit iterm2
 caskit karabiner-elements
 caskit kiibohd-configurator
-caskit logitech-g-hub
+caskit homebrew/cask-drivers/logitech-g-hub
 caskit notion
 caskit visual-studio-code
 caskit vlc

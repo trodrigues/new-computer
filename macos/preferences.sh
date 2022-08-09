@@ -434,6 +434,12 @@ defaults write com.apple.dock show-recents -bool false
 # Reset Launchpad, but keep the desktop wallpaper intact
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
+# Menubar clock settings
+defaults write com.apple.menuextra.clock "DateFormat" -string "\"d MMM  HH:mm\""
+defaults write com.apple.menuextra.clock "FlashDateSeparators" -bool "false"
+defaults write com.apple.menuextra.clock "ShowDayOfWeek" -bool "false"
+defaults write com.apple.menuextra.clock "ShowDate" -bool "true"
+
 # Hot corners
 # Possible values:
 #  0: no-op

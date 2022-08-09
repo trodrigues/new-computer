@@ -90,8 +90,6 @@ then
 	mas install 458887729
 	# The Unarchiver
 	mas install 425424353
-	# Sketch 3
-	mas install 852320343
 	# Shush 
 	mas install 496437906
 	# Pocket
@@ -114,16 +112,20 @@ fi
 
 echo "Starting brew install..."
 
+brewit asdf
 brewit awscli
 brewit cloc
 brewit dfu-util
 brewit direnv
+brewit exa
+brewit fnm
 brewit gawk
 brewit git
 brewit gitsh
 brewit go
 brewit hub
 brewit imagemagick
+brewit jenv
 brewit jq
 brewit macvim
 brewit netcat
@@ -146,41 +148,40 @@ brewit tree
 brewit wallpaper
 brewit wget
 brewit zsh
-brewit exa
 brewit zsh-completions
-brewit jenv
-brewit fnm
-brewit asdf
 
 gem install tmuxinator
 
 echo "Starting brew cask install..."
 
-caskit alfred
-caskit notion
-caskit dropbox
 caskit 1password
-caskit iterm2
-caskit witch
-caskit istat-menus
-caskit hammerspoon
-caskit karabiner-elements
-caskit logitech-g-hub
-caskit google-chrome
-caskit homebrew/cask-versions/google-chrome-canary
-caskit firefox
-caskit docker
-caskit visual-studio-code
-caskit caffeine
-caskit vlc
 caskit acorn
+caskit alfred
+caskit caffeine
+caskit calibre
 caskit carbon-copy-cloner
-caskit daisydisk
-caskit kiibohd-configurator
 caskit charles
 caskit choosy
-caskit calibre
-
+caskit coteditor
+caskit daisydisk
+caskit discord
+caskit docker
+caskit dropbox
+caskit firefox
+caskit google-chrome
+caskit google-drive
+caskit hammerspoon
+caskit homebrew/cask-versions/google-chrome-canary
+caskit istat-menus
+caskit iterm2
+caskit karabiner-elements
+caskit kiibohd-configurator
+caskit logitech-g-hub
+caskit notion
+caskit visual-studio-code
+caskit vlc
+caskit witch
+caskit zoom
 
 #############################################
 ### Fonts
@@ -190,16 +191,16 @@ echo "Installing fonts..."
 
 brew tap homebrew/cask-fonts
 
+caskit font-cascadia-code
+caskit font-fira-code
 caskit font-hack
 caskit font-inconsolata
+caskit font-iosevka
 caskit font-lato
 caskit font-museo
 caskit font-open-sans
+caskit font-roboto
 caskit font-source-code-pro
-caskit font-fira-code
-caskit font-cascadia-code
-caskit font-iosevka
-
 
 ############################################
 

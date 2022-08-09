@@ -10,6 +10,10 @@ Based on https://github.com/nnja/new-computer which in itself uses resources fro
 - https://gist.github.com/millermedeiros/6615994
 - https://gist.github.com/brandonb927/3195465/
 
+Additional references for new settings:
+- https://pawelgrzybek.com/change-macos-user-preferences-via-command-line/
+- https://macos-defaults.com/
+
 ----
 
 
@@ -138,16 +142,6 @@ Unchecked:
 	* From key right_control to key `b` (custom setting for my ergonomic keyboard)
 * Devices
 	* For all devices -> Caps Lock LED Check Manipulate LED
-
-#### Arduino IDE (Set up to use with Adafruit boards)
-
-* Preferences -> Additional Boards Manager URLS -> https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
-* Tools -> Board -> Board Manager. Install:
-	* Arduino SAMD Boards
-	* Adafruit AVR Boards
-* Sketch -> Include Library -> Manage Libraries. Install:
-	* Adafruit NeoPixel
-	* FastLED
 
 #### Dash
 

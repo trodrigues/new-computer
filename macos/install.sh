@@ -140,7 +140,7 @@ brewit redis
 brewit rename
 brewit ruby
 brewit ruby-build
-brewit rust
+brewit rustup-init
 brewit svn # needed for fonts
 brewit the_silver_searcher
 brewit tig
@@ -152,6 +152,10 @@ brewit zsh
 brewit zsh-completions
 
 gem install tmuxinator
+
+fnm install `fnm ls-remote|tail -n 1`
+
+rustup-init
 
 echo "Starting brew cask install..."
 

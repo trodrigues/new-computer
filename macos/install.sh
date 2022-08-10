@@ -59,10 +59,10 @@ then
 fi
 
 # Latest brew, install brew cask
-brew upgrade
-brew update
 brew tap homebrew/cask
 brew tap thoughtbot/formulae
+brew update
+brew upgrade
 
 #############################################
 ### Installs from Mac App Store
@@ -177,7 +177,7 @@ caskit istat-menus
 caskit iterm2
 caskit karabiner-elements
 caskit kiibohd-configurator
-caskit homebrew/cask-drivers/logitech-g-hub
+caskit logitech-g-hub
 caskit notion
 caskit visual-studio-code
 caskit vlc
@@ -206,4 +206,3 @@ caskit font-source-code-pro
 ############################################
 
 brew cleanup
-

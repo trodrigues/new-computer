@@ -27,6 +27,7 @@ chsh -s $HOMEBREW/bin/zsh trodrigues
 
 if [ ! -d ~/.ssh ] ; then
 	mkdir ~/.ssh
+	cp ~/Dropbox/configs/ssh/sshconfig .ssh/config
 fi
 
 #############################################

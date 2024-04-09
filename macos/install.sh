@@ -114,6 +114,7 @@ echo "Starting brew install..."
 
 brewit asdf
 brewit awscli
+brewit broot
 brewit cloc
 brewit dfu-util
 brewit direnv
@@ -124,6 +125,7 @@ brewit git
 brewit gitsh
 brewit go
 brewit hub
+brewit htmlq
 brewit imagemagick
 brewit jenv
 brewit jq
@@ -145,6 +147,7 @@ brewit svn # needed for fonts
 brewit the_silver_searcher
 brewit tig
 brewit tmux
+brewit tmuxinator
 brewit tree
 brewit wallpaper
 brewit wget
@@ -171,10 +174,9 @@ caskit coteditor
 caskit daisydisk
 caskit discord
 caskit docker
-caskit dropbox
+caskit nextcloud
 caskit firefox
 caskit google-chrome
-caskit google-drive
 caskit hammerspoon
 caskit homebrew/cask-versions/google-chrome-canary
 caskit istat-menus

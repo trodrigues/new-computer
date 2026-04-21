@@ -162,13 +162,13 @@ rustup-init
 
 echo "Starting brew cask install..."
 
-caskit 1password
+caskit bitwarden
 caskit acorn
 caskit alfred
+caskit bloom
 caskit caffeine
 caskit calibre
 caskit carbon-copy-cloner
-caskit charles
 caskit choosy
 caskit coteditor
 caskit daisydisk
@@ -180,15 +180,14 @@ caskit google-chrome
 caskit hammerspoon
 caskit homebrew/cask-versions/google-chrome-canary
 caskit istat-menus
-caskit iterm2
+caskit ghostty
 caskit karabiner-elements
-caskit kiibohd-configurator
-caskit logitech-g-hub
-caskit notion
+caskit obsidian
 caskit visual-studio-code
 caskit vlc
 caskit witch
 caskit zoom
+caskit zed
 
 #############################################
 ### Fonts
